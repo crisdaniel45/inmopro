@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INMOPRO - Forjando Agentes Inmobiliarios</title>
+
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #020617; /* fondo oscuro elegante */
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    /* HEADER / NAV */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0 1.5rem;
+      border-bottom: 1px solid #1f2937;
+      margin-bottom: 2rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      color: #38bdf8;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.1rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      color: #020617;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.25);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(34, 197, 94, 0.35);
+      opacity: 0.95;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(2.1rem, 4vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #7dd3fc;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      color: #9ca3af;
+      font-size: 0.98rem;
+      margin-bottom: 1.5rem;
+      max-width: 32rem;
+    }
+
+    .hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid #1f2937;
+      color: #d1d5db;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      align-items: center;
+    }
+
+    .cta-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.4rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      color: #020617;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      box-shadow: 0 14px 35px rgba(56, 189, 248, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .cta-main:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 45px rgba(56, 189, 248, 0.45);
+      opacity: 0.96;
+    }
+
+    .cta-secondary {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    .cta-secondary span {
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    /* Hero right – tarjeta de info básica */
+    .hero-right {
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.15), transparent 55%),
+                  radial-gradient(circle at bottom, rgba(34, 197, 94, 0.18), transparent 55%),
+                  #020617;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 1.5rem 1.3rem;
+      box-shadow: 0 16px 45px rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-right h2 {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      color: #f9fafb;
+    }
+
+    .hero-right p {
+      font-size: 0.87rem;
+      color: #d1d5db;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      margin-top: 0.9rem;
+      padding-top: 0.7rem;
+      border-top: 1px solid rgba(31, 41, 55, 0.8);
+      color: #9ca3af;
+    }
+
+    .info-row span:first-child {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    /* SECTION: Qué aprenderás */
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: #e5e7eb;
+    }
+
+    .section-subtitle {
+      font-size: 0.92rem;
+      color: #9ca3af;
+      margin-bottom: 1.2rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .card {
+      background: #020617;
+      border-radius: 1rem;
+      border: 1px solid #1f2937;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+      color: #f9fafb;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    /* SECTION: Sobre el curso / instructor */
+    .two-cols {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.8rem;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(34, 197, 94, 0.05));
+      border-radius: 1rem;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 1rem;
+      font-size: 0.86rem;
+      color: #d1d5db;
+    }
+
+    .highlight-box ul {
+      margin-left: 1.1rem;
+      margin-top: 0.45rem;
+    }
+
+    .highlight-box li {
+      margin-bottom: 0.3rem;
+    }
+
+    /* SECTION: Llamado final */
+    .cta-section {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+      border: 1px solid #1f2937;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.15), transparent 55%),
+                  #020617;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .cta-section p {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section small {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.78rem;
+      color: #4b5563;
+      text-align: center;
+    }
+
+    /* Responsivo */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .hero-right {
+        order: -1;
+      }
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-inline: 1rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .two-cols {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+    <!-- HEADER -->
+    <header>
+      <div class="logo">INMOPRO</div>
+      <!-- Botón que lleva al Drive -->
+      <a class="nav-cta" href="https://drive.google.com/drive/folders/128qRq_MHjA_g9oyJ7myybCOjwtJtMTTQ?usp=drive_link" target="_blank" rel="noopener">
+        Ir al material del curso
+        <span>↗</span>
+      </a>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section class="hero">
+        <div class="hero-left">
+          <div class="badge">
+            <span>Nuevo programa</span> ·
+            <span>Agentes inmobiliarios desde cero</span>
+          </div>
+          <h1>INMOPRO – Forjando Agentes Inmobiliarios Profesionales</h1>
+          <p class="hero-subtitle">
+            Aprende paso a paso cómo convertirte en un agente inmobiliario capaz de captar, evaluar y vender
+            terrenos con visión de inversión. Desde la prospección hasta el cierre de la venta.
+          </p>
+
+          <div class="hero-highlights">
+            <span class="pill">Estrategias de captación de terrenos</span>
+            <span class="pill">Análisis de oportunidades</span>
+            <span class="pill">Ventas y negociación</span>
+          </div>
+
+          <div class="hero-cta-group">
+            <a class="cta-main" href="https://drive.google.com/drive/folders/128qRq_MHjA_g9oyJ7myybCOjwtJtMTTQ?usp=drive_link" target="_blank" rel="noopener">
+              Acceder al contenido en Drive
+              <span>▶</span>
+            </a>
+            <div class="cta-secondary">
+              Acceso inmediato a <span>videos, documentos</span> e información de terrenos.
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-right">
+          <h2>Contenido del curso INMOPRO</h2>
+          <p>• Videos de formación para agentes inmobiliarios.</p>
+          <p>• Documentos descargables y formatos de trabajo.</p>
+          <p>• Información detallada de terrenos disponibles para comercialización.</p>
+
+          <div class="info-row">
+            <span>Nivel</span>
+            <span>Principiante a intermedio</span>
+          </div>
+          <div class="info-row">
+            <span>Modalidad</span>
+            <span>100% online (Google Drive)</span>
+          </div>
+          <div class="info-row">
+            <span>Acceso</span>
+            <span>24/7 desde cualquier dispositivo</span>
+          </div>
+        </aside>
+      </section>
+
+      <!-- SECCIÓN: Qué aprenderás -->
+      <section class="section">
+        <h2 class="section-title">¿Qué vas a aprender en INMOPRO?</h2>
+        <p class="section-subtitle">
+          El objetivo es que termines el curso con una ruta clara para ejercer como agente inmobiliario, con foco especial en 
+          terrenos y proyectos de urbanización.
+        </p>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Fundamentos del agente inmobiliario</h3>
+            <p>
+              Rol, ética profesional, mentalidad ganadora y cómo construir confianza con tus clientes desde el primer contacto.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Captación y análisis de terrenos</h3>
+            <p>
+              Cómo identificar terrenos con potencial, revisar documentación básica y evaluar oportunidades de inversión.
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Ventas y negociación efectiva</h3>
+            <p>
+              Técnicas para presentar la propuesta, manejar objeciones, negociar precios y concretar cierres de forma profesional.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SECCIÓN: Sobre el curso / Instructor -->
+      <section class="section">
+        <div class="two-cols">
+          <div>
+            <h2 class="section-title">¿Para quién es este curso?</h2>
+            <p class="section-subtitle">
+              INMOPRO está diseñado para personas que quieren entrar al mundo inmobiliario o potenciar lo que ya están haciendo,
+              especialmente en la venta de terrenos.
+            </p>
+
+            <div class="card">
+              <h3>Este curso es para ti si:</h3>
+              <p>
+                • No tienes experiencia, pero quieres empezar a trabajar como agente inmobiliario.<br>
+                • Ya vendes terrenos, pero quieres profesionalizar tu proceso.<br>
+                • Buscas una guía clara y práctica, basada en casos reales.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="section-title">Metodología y formato</h2>
+            <div class="highlight-box">
+              <p>
+                Todo el contenido del curso está organizado en una carpeta de <strong>Google Drive</strong>, ordenado por módulos:
+              </p>
+              <ul>
+                <li>Videos explicativos por cada tema clave.</li>
+                <li>Documentos PDF con resúmenes y materiales de apoyo.</li>
+                <li>Hojas de trabajo y formatos que podrás usar con tus clientes.</li>
+                <li>Carpetas con información actualizada de terrenos.</li>
+              </ul>
+              <p style="margin-top:0.5rem;">
+                Solo necesitas conexión a internet y una cuenta de Google para acceder.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN CTA FINAL -->
+      <section class="cta-section">
+        <h2>Ingresa ahora a INMOPRO</h2>
+        <p>
+          Haz clic en el botón para acceder directamente a la carpeta de Drive con todo el material del curso, 
+          incluyendo videos, documentos y la información de los terrenos.
+        </p>
+
+        <a class="cta-main" href="TU_LINK_DE_DRIVE_AQUI" target="_blank" rel="noopener">
+          Entrar al Drive del curso
+          <span>↗</span>
+        </a>
+
+        <small>Puedes guardar el enlace y volver cuando quieras. El acceso es 24/7.</small>
+      </section>
+    </main>
+
+    <footer>
+      INMOPRO – Forjando agentes inmobiliarios · ©
+      <span id="year"></span>
+    </footer>
+  </div>
+
+  <script>
+    // Año automático en el footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
